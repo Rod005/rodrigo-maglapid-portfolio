@@ -1,83 +1,185 @@
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
-const themeBtn = document.querySelector('.theme-btn');
-const root = document.documentElement;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rodrigo C. Maglapid Jr. — Software Developer building websites, POS systems, SaaS platforms, and custom business applications." />
+  <meta name="theme-color" content="#0d1512" />
+  <meta property="og:title" content="Rodrigo Maglapid | Software Developer" />
+  <meta property="og:description" content="Modern websites and business systems designed for real operations." />
+  <meta property="og:type" content="website" />
+  <title>Rodrigo Maglapid | Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-menuBtn?.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  menuBtn.setAttribute('aria-expanded', String(open));
-});
+  <header class="nav-shell">
+    <nav class="nav container">
+      <a class="brand" href="#home" aria-label="Rodrigo Maglapid home">
+        <span class="brand-mark">RM</span>
+        <span><strong>Rodrigo Maglapid</strong><small>Software Developer</small></span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-btn" type="button" aria-label="Toggle color theme">◐</button>
+        <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation">☰</button>
+      </div>
+      <div id="nav-links" class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a class="pill-link" href="#contact">Get a Quote</a>
+      </div>
+    </nav>
+  </header>
 
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+  <main>
+    <section id="home" class="hero container reveal">
+      <div class="hero-copy">
+        <span class="eyebrow"><i></i> AVAILABLE FOR FREELANCE PROJECTS</span>
+        <h1>Business software that feels <em>simple, modern, and dependable.</em></h1>
+        <p>I am Rodrigo C. Maglapid Jr., a software developer creating websites, POS systems, cloud platforms, and custom business tools built around real operational needs.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View My Work <span>→</span></a>
+          <a class="btn secondary" href="#contact">Start a Project</a>
+        </div>
+        <div class="mini-stats">
+          <div><strong data-count="5">0+</strong><span>Business systems</span></div>
+          <div><strong data-count="20">0+</strong><span>Modules developed</span></div>
+          <div><strong>Cloud</strong><span>Deployment ready</span></div>
+        </div>
+      </div>
 
-document.getElementById('year').textContent = new Date().getFullYear();
+      <div class="hero-card tilt-card">
+        <div class="portrait-placeholder">
+          <div class="portrait-ring"></div>
+          <div class="code-lines" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="initials">RM</div>
+          <span class="photo-note">Professional photo can be added here</span>
+        </div>
+        <div class="hero-card-bottom">
+          <div><span class="muted">Based in</span><strong>Cavite, Philippines</strong></div>
+          <div class="status"><i></i> Open for projects</div>
+        </div>
+      </div>
+    </section>
 
-const savedTheme = localStorage.getItem('portfolio-theme');
-if (savedTheme === 'light') root.classList.add('light');
-themeBtn?.addEventListener('click', () => {
-  root.classList.toggle('light');
-  localStorage.setItem('portfolio-theme', root.classList.contains('light') ? 'light' : 'dark');
-});
+    <section class="ticker" aria-label="Skills">
+      <div class="ticker-track">
+        <span>Web Development</span><span>•</span><span>POS Systems</span><span>•</span><span>SaaS Platforms</span><span>•</span><span>UI/UX Design</span><span>•</span><span>Cloud Deployment</span><span>•</span><span>Business Automation</span><span>•</span><span>Web Development</span><span>•</span><span>POS Systems</span><span>•</span><span>SaaS Platforms</span>
+      </div>
+    </section>
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    <section id="projects" class="section container reveal">
+      <div class="section-head">
+        <div><span class="eyebrow">SELECTED WORK</span><h2>Systems developed for real business operations.</h2></div>
+        <p>Each project focuses on workflow, reporting, usability, and long-term scalability.</p>
+      </div>
 
-const counters = document.querySelectorAll('[data-count]');
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = Number(el.dataset.count || 0);
-    let current = 0;
-    const step = Math.max(1, Math.ceil(target / 30));
-    const timer = setInterval(() => {
-      current = Math.min(target, current + step);
-      el.textContent = `${current}+`;
-      if (current >= target) clearInterval(timer);
-    }, 35);
-    counterObserver.unobserve(el);
-  });
-}, { threshold: 0.8 });
-counters.forEach(el => counterObserver.observe(el));
+      <div class="project-grid">
+        <article class="project-card featured tilt-card">
+          <div class="project-visual abotrix"><span class="tag">Multi-Industry SaaS</span><div class="mock-window"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-sidebar"></div><div class="mock-content"><i></i><i></i><i></i><b></b></div></div></div>
+          <div class="project-info"><div><small>2026 · Full-stack platform</small><h3>ABOTRIX</h3><p>Cloud-ready business management platform for restaurant, hotel, travel, clinic, retail, and other industries.</p><div class="project-tags"><span>Multi-tenant</span><span>PostgreSQL</span><span>Docker</span><span>Cloud</span></div></div><a href="#contact" aria-label="Ask about ABOTRIX">↗</a></div>
+        </article>
 
-const glow = document.querySelector('.cursor-glow');
-window.addEventListener('pointermove', event => {
-  if (!glow) return;
-  glow.style.left = `${event.clientX}px`;
-  glow.style.top = `${event.clientY}px`;
-});
+        <article class="project-card tilt-card">
+          <div class="project-visual tsikbo"><span class="tag">Restaurant POS</span><div class="pos-screen"><div class="pos-menu"><i></i><i></i><i></i><i></i></div><div class="pos-order"><b></b><b></b><b></b><span></span></div></div></div>
+          <div class="project-info"><div><small>2026 · POS & operations</small><h3>TSIKBO POS</h3><p>Ordering, kitchen display, inventory, payroll, reporting, loyalty, and multi-branch tools.</p><div class="project-tags"><span>POS</span><span>KDS</span><span>Inventory</span></div></div><a href="#contact" aria-label="Ask about TSIKBO POS">↗</a></div>
+        </article>
 
-if (matchMedia('(pointer:fine)').matches) {
-  document.querySelectorAll('.tilt-card').forEach(card => {
-    card.addEventListener('pointermove', event => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(1000px) rotateX(${y * -4}deg) rotateY(${x * 4}deg) translateY(-3px)`;
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
+        <article class="project-card tilt-card">
+          <div class="project-visual crew"><span class="tag">Workforce System</span><div class="crew-ui"><header></header><aside></aside><main><i></i><i></i><i></i><div></div></main></div></div>
+          <div class="project-info"><div><small>2026 · Operations tool</small><h3>Crew Management</h3><p>Automated crew records, disembarkation alerts, birthday reminders, editing, and reporting.</p><div class="project-tags"><span>Offline</span><span>Alerts</span><span>Reports</span></div></div><a href="#contact" aria-label="Ask about Crew Management">↗</a></div>
+        </article>
+      </div>
+    </section>
 
-const form = document.getElementById('contact-form');
-const nextInput = document.getElementById('form-next');
-if (nextInput) nextInput.value = `${window.location.origin}${window.location.pathname}?sent=1#contact`;
-if (new URLSearchParams(window.location.search).get('sent') === '1') {
-  const note = document.getElementById('form-note');
-  if (note) note.textContent = 'Thank you. Your inquiry was submitted successfully.';
-}
-if (form) {
-  form.addEventListener('submit', () => {
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true;
-    button.innerHTML = 'Sending...';
-  });
-}
+    <section id="services" class="section services-wrap reveal">
+      <div class="container">
+        <div class="section-head light">
+          <div><span class="eyebrow">SERVICES</span><h2>Digital solutions designed around your business.</h2></div>
+          <p>From a professional website to a complete operational platform, every project is planned around your workflow and goals.</p>
+        </div>
+        <div class="services-grid">
+          <article><span>01</span><div class="service-icon">⌘</div><h3>Business Websites</h3><p>Responsive company websites, landing pages, portfolios, and service websites.</p></article>
+          <article><span>02</span><div class="service-icon">◇</div><h3>Custom Web Applications</h3><p>Dashboards, booking systems, inventory, CRM, HR, payroll, and automation.</p></article>
+          <article><span>03</span><div class="service-icon">▦</div><h3>POS & Operations</h3><p>Restaurant, café, retail, salon, hotel, and branch-based management systems.</p></article>
+          <article><span>04</span><div class="service-icon">☁</div><h3>SaaS Development</h3><p>Secure multi-tenant cloud platforms with users, reports, subscriptions, and admin tools.</p></article>
+          <article><span>05</span><div class="service-icon">✦</div><h3>UI/UX Design</h3><p>Modern mobile-first interfaces designed to be clear and easy to operate.</p></article>
+          <article><span>06</span><div class="service-icon">↗</div><h3>Deployment & Support</h3><p>Domain, hosting, SSL, business email, cloud server setup, training, and maintenance.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section container reveal">
+      <div class="section-head">
+        <div><span class="eyebrow">MY PROCESS</span><h2>A clear path from idea to launch.</h2></div>
+        <p>You stay informed at every stage, with the project divided into practical milestones.</p>
+      </div>
+      <div class="process-grid">
+        <article><b>01</b><h3>Discovery</h3><p>We discuss your business, users, required features, budget, and preferred timeline.</p></article>
+        <article><b>02</b><h3>Plan & Design</h3><p>I prepare the project scope, structure, interface direction, and development plan.</p></article>
+        <article><b>03</b><h3>Build & Test</h3><p>The system is developed, tested, reviewed, and improved based on feedback.</p></article>
+        <article><b>04</b><h3>Launch & Support</h3><p>I deploy the project, provide training, and support the agreed post-launch period.</p></article>
+      </div>
+    </section>
+
+    <section id="about" class="section container about reveal">
+      <div class="about-card">
+        <span class="eyebrow">ABOUT ME</span>
+        <h2>Software made practical for everyday business.</h2>
+        <p>I combine business experience with software development to create systems that solve real operational problems. My goal is to make technology useful, understandable, and scalable for business owners.</p>
+        <div class="tech-list"><span>Python</span><span>FastAPI</span><span>React</span><span>JavaScript</span><span>PostgreSQL</span><span>Docker</span><span>Google Cloud</span><span>Cloudflare</span><span>GitHub</span><span>Linux</span></div>
+      </div>
+      <div class="pricing-card">
+        <span class="eyebrow">STARTING PRICES</span>
+        <div class="price-row"><div><strong>Business Website</strong><small>Professional online presence</small></div><b>₱20,000+</b></div>
+        <div class="price-row"><div><strong>Business Platform</strong><small>Custom workflow and dashboard</small></div><b>₱50,000+</b></div>
+        <div class="price-row"><div><strong>Enterprise System</strong><small>Advanced modules and cloud setup</small></div><b>₱120,000+</b></div>
+        <p class="pricing-note">Final quotation depends on features, integrations, timeline, hosting, and support requirements.</p>
+      </div>
+    </section>
+
+    <section class="section container reveal">
+      <div class="faq-card">
+        <div><span class="eyebrow">FREQUENTLY ASKED</span><h2>Before we start.</h2></div>
+        <div class="faq-list">
+          <details><summary>Are domain and hosting included?</summary><p>They may be included in the selected package or quoted separately depending on the website or server requirements.</p></details>
+          <details><summary>Can the system work on mobile and desktop?</summary><p>Yes. Web-based projects are designed to be responsive for computers, tablets, and mobile devices.</p></details>
+          <details><summary>Do you provide training and support?</summary><p>Yes. Basic training and a defined support period can be included in the project proposal.</p></details>
+          <details><summary>Can you develop a custom feature?</summary><p>Yes. Custom features are reviewed during discovery and included in the approved scope and quotation.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container reveal">
+      <div class="contact-card">
+        <div><span class="eyebrow">LET'S WORK TOGETHER</span><h2>Have a business idea or system you want to build?</h2><p>Send your requirements and I will prepare a project recommendation, scope, and quotation.</p><div class="contact-points"><span>✓ Free initial consultation</span><span>✓ Clear project scope</span><span>✓ Professional quotation</span></div></div>
+        <form id="contact-form" action="https://formsubmit.co/support@abotrix.com" method="POST">
+          <input type="hidden" name="_subject" value="New Portfolio Project Inquiry">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" id="form-next" value="">
+          <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off">
+          <div class="form-row"><label>Name<input required name="name" placeholder="Your name"></label><label>Email<input required type="email" name="email" placeholder="client@email.com"></label></div>
+          <div class="form-row"><label>Mobile number<input name="mobile" placeholder="09XX XXX XXXX"></label><label>Project type<select name="type"><option>Business Website</option><option>Custom Business Platform</option><option>POS System</option><option>SaaS Platform</option><option>Other</option></select></label></div>
+          <label>Project details<textarea required name="details" rows="5" placeholder="Tell me about your business and the features you need."></textarea></label>
+          <button class="btn primary" type="submit">Send Inquiry <span>→</span></button>
+          <small id="form-note">Inquiries are sent to support@abotrix.com. The first submission may require one-time email activation.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner"><div><strong>Rodrigo C. Maglapid Jr.</strong><span>Software Developer · Cavite, Philippines</span></div><div class="footer-links"><a href="#projects">Projects</a><a href="#services">Services</a><a href="#contact">Contact</a></div><p>© <span id="year"></span> All rights reserved.</p></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
